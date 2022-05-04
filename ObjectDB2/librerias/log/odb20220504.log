@@ -1,0 +1,59 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-05-04 18:10:56 #1 store] 
+Database 'C:\Users\Usuario\git\Programacion\ObjectDB2\db\empleados.odb' is opened by 5468@DESKTOP-OHGPISA
+
+[2022-05-04 18:10:56 #2 store] 
+Configuration path: ?
+
+[2022-05-04 18:10:57 #3 type] 
+Type empleados.DepartamentoEntity is not enhanced.
+
+[2022-05-04 18:10:57 #4 type] 
+Type empleados.EmpleadoEntity is not enhanced.
+
+[2022-05-04 18:10:57 #5 store] 
+Database 'C:\Users\Usuario\git\Programacion\ObjectDB2\db\empleados.odb' is closed by 5468@DESKTOP-OHGPISA
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-05-04 18:11:01 #1 store] 
+Database 'C:\Users\Usuario\git\Programacion\ObjectDB2\db\empleados.odb' is opened by 2688@DESKTOP-OHGPISA
+
+[2022-05-04 18:11:01 #2 store] 
+Configuration path: ?
+
+[2022-05-04 18:11:01 #3 type] 
+Type empleados.DepartamentoEntity is not enhanced.
+
+[2022-05-04 18:11:01 #4 type] 
+Type empleados.EmpleadoEntity is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-05-04 18:14:24 #1 store] 
+Database 'C:\Users\Usuario\git\Programacion\ObjectDB2\db\empleados.odb' is opened by 14780@DESKTOP-OHGPISA
+
+[2022-05-04 18:14:24 #2 store] 
+Configuration path: ?
+
+[2022-05-04 18:14:24 #3 type] 
+Type empleados.DepartamentoEntity is not enhanced.
+
+[2022-05-04 18:14:24 #4 type] 
+Type empleados.EmpleadoEntity is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-05-04 18:18:52 #1 store] 
+Database 'C:\Users\Usuario\git\Programacion\ObjectDB2\db\empleados.odb' is opened by 3592@DESKTOP-OHGPISA
+
+[2022-05-04 18:18:52 #2 store] 
+Configuration path: ?
+
+[2022-05-04 18:18:52 #3 type] 
+Type empleados.DepartamentoEntity is not enhanced.
+
+[2022-05-04 18:18:52 #4 type] 
+Type empleados.EmpleadoEntity is not enhanced.
+
