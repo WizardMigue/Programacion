@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>84</x>
+      <y>42</y>
+      <w>714</w>
+      <h>182</h>
+    </coordinates>
+    <panel_attributes>Ejemplo de un cajero automático:
+El cajero está inicialmente apagado. Después de poner en marcha el cajero, inicia un conjunto de tests de
+manera autónoma. Tras el test, pueden pasar dos cosas. 1- Si el test falla, el cajero entra en modo
+"Fuera de servicio". 2- Si el test no falla entonces el cajero entra en modo de espera. Este modo de
+espera es el modo en el que el cajero se encontrará a la espera de un cliente. Del estado de espera, un 
+técnico puede apagar el cajero. Desde el estado "Fuera de servicio" un técnico puede apagar el 
+cajero. Un  técnico puede poner el cajero en mantenimiento, tanto desde el modo "En espera" como 
+desde el modo "Fuera de Servicio. Cuando el técnico finaliza el mantenimiento, el cajero vuelve a 
+la autocomprobación . Si el usuario inserta una tarjeta (en el estado en espera) automáticamente
+se inicia un proceso más complejo que es la operación de sacar dinero.
+La operación sacar dinero al entrar el sistema lee la tarjeta y al salir la expulsa.
+Se comprende de 3 operaciones, autenticar usuario (que a su vez es un estado complejo, que no vamos
+a reflejar en este diagrama), seleccionar importe y sacar el dinero.
+En cualquier momento el usuario puede cancelar la operación, lo que llevará al cajero a "En Espera"
+Si la operación falla por un problema con el sistema, el cajero pasará a fuera de servicio.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>322</x>
+      <y>245</y>
+      <w>14</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>type=initial</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>357</x>
+      <y>238</y>
+      <w>63</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>Apagado</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>448</x>
+      <y>294</y>
+      <w>105</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>Comprobación 
+Autónoma</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>378</x>
+      <y>259</y>
+      <w>84</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+
+
+Encender</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0;100.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>350</x>
+      <y>378</y>
+      <w>63</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>En espera</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>546</x>
+      <y>371</y>
+      <w>77</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>Fuera
+de
+Servicio</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>546</x>
+      <y>294</y>
+      <w>56</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+Fallo</panel_attributes>
+    <additional_attributes>10.0;20.0;60.0;20.0;60.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>406</x>
+      <y>315</y>
+      <w>98</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+Correcto</panel_attributes>
+    <additional_attributes>70.0;10.0;70.0;110.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>371</x>
+      <y>259</y>
+      <w>49</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+Apagar</panel_attributes>
+    <additional_attributes>10.0;170.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>413</x>
+      <y>245</y>
+      <w>231</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+Apagar</panel_attributes>
+    <additional_attributes>270.0;180.0;270.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>448</x>
+      <y>427</y>
+      <w>70</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>Mantenimiento</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>511</x>
+      <y>399</y>
+      <w>98</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m2=Servicio técnico</panel_attributes>
+    <additional_attributes>100.0;10.0;100.0;60.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>315</x>
+      <y>385</y>
+      <w>147</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+Servicio técnico</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0;10.0;80.0;190.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>322</x>
+      <y>245</y>
+      <w>49</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>322</x>
+      <y>476</y>
+      <w>336</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>Sacar Dinero
+--
+entrada / leerTarjeta 
+salida / expulsarTarjeta
+
+--
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>252</x>
+      <y>378</y>
+      <w>112</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+Meter la Tarjeta</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;10.0;10.0;200.0;100.0;200.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>497</x>
+      <y>315</y>
+      <w>21</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;160.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>329</x>
+      <y>546</y>
+      <w>14</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>type=initial</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>630</x>
+      <y>546</y>
+      <w>14</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>type=final</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>329</x>
+      <y>546</y>
+      <w>49</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>455</x>
+      <y>539</y>
+      <w>63</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>Seleccinar 
+Importe</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>546</x>
+      <y>539</y>
+      <w>63</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>Entregar
+Dinero</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>420</x>
+      <y>546</y>
+      <w>49</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>511</x>
+      <y>546</y>
+      <w>49</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>602</x>
+      <y>546</y>
+      <w>42</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;40.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>189</x>
+      <y>343</y>
+      <w>182</w>
+      <h>231</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m1=Trasnsación Finalizada</panel_attributes>
+    <additional_attributes>190.0;300.0;10.0;300.0;10.0;10.0;240.0;10.0;240.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>126</x>
+      <y>322</y>
+      <w>259</w>
+      <h>266</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m1=Trasnsación Cancelada Por el Usuario</panel_attributes>
+    <additional_attributes>280.0;350.0;10.0;350.0;10.0;10.0;350.0;10.0;350.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>616</x>
+      <y>378</y>
+      <w>70</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+fallo
+del
+sistema</panel_attributes>
+    <additional_attributes>30.0;140.0;30.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>364</x>
+      <y>532</y>
+      <w>63</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>Autenticar 
+Usuario
+symbol=substate</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>70</x>
+      <y>21</y>
+      <w>742</w>
+      <h>581</h>
+    </coordinates>
+    <panel_attributes>Diagrama de Estados, Cajero Automático</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

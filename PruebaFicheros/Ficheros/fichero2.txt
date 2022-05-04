@@ -1,0 +1,4 @@
+1
+A
+Esto es una cadena que va en la linea 12
+Esto es un array de caracteres
