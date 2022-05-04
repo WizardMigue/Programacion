@@ -57,3 +57,17 @@ Type empleados.DepartamentoEntity is not enhanced.
 [2022-05-04 18:18:52 #4 type] 
 Type empleados.EmpleadoEntity is not enhanced.
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-05-04 18:21:32 #1 store] 
+Database 'C:\Users\Usuario\git\Programacion\ObjectDB2\db\empleados.odb' is opened by 980@DESKTOP-OHGPISA
+
+[2022-05-04 18:21:32 #2 store] 
+Configuration path: ?
+
+[2022-05-04 18:21:32 #3 type] 
+Type empleados.DepartamentoEntity is not enhanced.
+
+[2022-05-04 18:21:32 #4 type] 
+Type empleados.EmpleadoEntity is not enhanced.
+
