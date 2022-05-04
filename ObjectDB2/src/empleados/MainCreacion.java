@@ -6,9 +6,7 @@ import java.text.SimpleDateFormat;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-//
-//Alberto Carrera Martín - Abril 2020
-//
+
 public class MainCreacion {
 
 	public static void main(String[] args) throws ParseException {
@@ -35,7 +33,7 @@ public class MainCreacion {
 		EmpleadoEntity e12 = new EmpleadoEntity (3054, "Antonio Mériz Piedrafita", "Comercial", e9, formato.parse("2003-03-22"), 2600, 1000, d3);
 		EmpleadoEntity e13 = new EmpleadoEntity (3044,"Lorenzo Blasco González", "Comercial", e9, formato.parse("2001-03-07"), 2350, 400 ,d3);
 		EmpleadoEntity e14 = new EmpleadoEntity (3000,"Javier Escartín Nasarre", "Empleado", e9, formato.parse("2003-07-13"), 2435, null, d3);
-		//
+		
 		EntityManagerFactory emf =
 	            Persistence.createEntityManagerFactory("db/empleados.odb");
 	   EntityManager em = emf.createEntityManager();

@@ -7,9 +7,7 @@ import javax.persistence.Id;
 
 import javax.persistence.ManyToOne;
 
-//
-//Alberto Carrera Martín - Abril 2020
-//
+
 
 @Entity
 public class EmpleadoEntity {

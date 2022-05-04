@@ -10,9 +10,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-//
-// Alberto Carrera Martín - Abril 2020
-//
 
 public class AccesoBdatos {
 	private EntityManagerFactory emf;
@@ -28,8 +25,8 @@ public class AccesoBdatos {
 	}
 	public DepartamentoEntity buscarDepartamento(int numDepartamento) {
 		return em.find(DepartamentoEntity.class, numDepartamento);
-	}// de método buscarDepartamento
-	//
+	}
+	
 	@SuppressWarnings("deprecation")
 	public void imprimirDepartamento (int numDepartamento) {
 		DepartamentoEntity d = buscarDepartamento(numDepartamento);
@@ -63,7 +60,7 @@ public class AccesoBdatos {
 			
 			System.out.println(datos);
 		}
-	} // de método imprimirDepartamento
+	}
 	
 	public boolean insertarDepartamento (DepartamentoEntity d) {
 		if (buscarDepartamento(d.getDptoId())!=null)
@@ -72,7 +69,7 @@ public class AccesoBdatos {
 		em.persist(d);
 		em.getTransaction().commit();
 		return true;
-	} // de insertarDepartamento
+	}
 	
 	public boolean modificarDepartamento (DepartamentoEntity d) {
 		DepartamentoEntity departamentoBuscado=buscarDepartamento(d.getDptoId());
@@ -84,10 +81,7 @@ public class AccesoBdatos {
 		em.persist (departamentoBuscado);
 		em.getTransaction().commit();
 		return true;
-	} // de modificarDepartamento
-	
-	// Si tiene empleados lo borraría igual, dejando en estos el número de Departamento
-	// pero el resto de los atributos del departamento a null. Por eso no dejo borrar
+	}
 	
 	public boolean borrarDepartamento  (int numDepartamento) {
 		DepartamentoEntity departamentoBuscado=buscarDepartamento(numDepartamento);
@@ -97,7 +91,7 @@ public class AccesoBdatos {
 		em.remove(departamentoBuscado);
 		em.getTransaction().commit();
 		return true;
-	} // de modificarDepartamento
+	}
 	
 	public void demoJPQL() {
 		
@@ -114,7 +108,7 @@ public class AccesoBdatos {
 	        for (DepartamentoEntity r2 : l2) {
 	            System.out.println("Nombre :  " + r2.getNombre()+ ", Localidad: "+ r2.getLocalidad());
 	        }
-	    //
+	    
         TypedQuery<Object[]>tq3 =
 	            em.createQuery("SELECT d.nombre, d.localidad FROM DepartamentoEntity  d", Object[].class);
 	        List<Object[]> l3 = tq3.getResultList();
@@ -122,7 +116,7 @@ public class AccesoBdatos {
 	            System.out.println(
 	            "Nombre :  " + r3[0] + ", Localidad: " + r3[1]);
 	    }    
-	    //*/
+	    
 	      TypedQuery<Object[]>tq4 =
 		            em.createQuery("SELECT d.nombre, d.localidad FROM DepartamentoEntity d"
 		            		+ " WHERE d.dptoId != :n", Object[].class);

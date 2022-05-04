@@ -6,9 +6,7 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-//
-//Alberto Carrera Martín - Abril 2020
-//
+
 @Entity
 public class DepartamentoEntity {
 	@Id
