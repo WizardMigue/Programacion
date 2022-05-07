@@ -1,0 +1,17 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-05-07 18:25:37 #1 store] 
+Database 'C:\Users\Usuario\git\Programacion\ObjectDB1\db\empleados.odb' is opened by 3008@DESKTOP-OHGPISA
+
+[2022-05-07 18:25:37 #2 store] 
+Configuration path: ?
+
+[2022-05-07 18:25:37 #3 type] 
+Type empleados.DepartamentoEntity is not enhanced.
+
+[2022-05-07 18:25:37 #4 type] 
+Type empleados.EmpleadoEntity is not enhanced.
+
+[2022-05-07 18:25:38 #5 store] 
+Database 'C:\Users\Usuario\git\Programacion\ObjectDB1\db\empleados.odb' is closed by 3008@DESKTOP-OHGPISA
+
