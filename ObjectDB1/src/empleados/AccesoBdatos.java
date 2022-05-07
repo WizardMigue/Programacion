@@ -133,7 +133,60 @@ public class AccesoBdatos {
 		for (Object[] r4 : l4) {
 			System.out.println("Nombre :  " + r4[0] + ", Localidad: " + r4[1]);
 		}
-
+		System.out.println();
+		TypedQuery<Object[]> query1 = em.createQuery("select e.nombre, e.alta " + " from EmpleadoEntity e",
+				Object[].class);
+		List<Object[]> l5 = query1.getResultList();
+		for (Object[] r5 : l5) {
+			System.out.println("Nombre: " + r5[0] + " - " + r5[1]);
+		}
+		System.out.println();
+		TypedQuery<Object[]> query2 = em.createQuery(
+				"select e.nombre, e.alta " + " from EmpleadoEntity e" + " where UPPER(e.nombre) like '%CARRERA%'",
+				Object[].class);
+		List<Object[]> l6 = query2.getResultList();
+		for (Object[] r6 : l6) {
+			System.out.println("Nombre: " + r6[0] + " - " + r6[1]);
+		}
+		System.out.println();
+		TypedQuery<Object[]> query3 = em.createQuery("select e.nombre, e.oficio, e.departamento.nombre "
+				+ " from EmpleadoEntity e" + " where e.oficio = 'Empleado'" + "and e.departamento.nombre = 'I+D'",
+				Object[].class);
+		List<Object[]> l7 = query3.getResultList();
+		for (Object[] r7 : l7) {
+			System.out.println("Nombre: " + r7[0] + " - " + r7[1] + " - " + r7[2]);
+		}
+		System.out.println();
+		TypedQuery<Object[]> query4 = em.createQuery(
+				"select e.nombre, e.alta " + " from EmpleadoEntity e " + " where YEAR(e.alta) >=2003", Object[].class);
+		List<Object[]> l8 = query4.getResultList();
+		for (Object[] r8 : l8) {
+			System.out.println("Nombre: " + r8[0] + " - " + r8[1]);
+		}
+		System.out.println();
+		TypedQuery<Object[]> query5 = em.createQuery(
+				"select e.nombre, e.empleados.nombre " + " from DepartamentoEntity e " + " order by e.nombre",
+				Object[].class);
+		List<Object[]> l9 = query5.getResultList();
+		for (Object[] r9 : l9) {
+			System.out.println("Nombre: " + r9[0] + " - " + r9[1]);
+		}
+		System.out.println();
+		TypedQuery<Object[]> query6 = em
+				.createQuery("select e.departamento.nombre, count(e.nombre), sum(e.salario), max(e.salario) "
+						+ " from EmpleadoEntity e " + " group by e.departamento.nombre", Object[].class);
+		List<Object[]> l10 = query6.getResultList();
+		for (Object[] r10 : l10) {
+			System.out.println("Nombre: " + r10[0] + " - " + r10[1] + " - " + r10[2] + " - " + r10[3]);
+		}
+		System.out.println();
+		TypedQuery<Object[]> query7 = em
+				.createQuery("select e.departamento.nombre, count(e.nombre), sum(e.salario), max(e.salario) "
+						+ " from EmpleadoEntity e " + " group by e.departamento.nombre" + " having count(e.nombre) >=5", Object[].class);
+		List<Object[]> l11 = query7.getResultList();
+		for (Object[] r11 : l11) {
+			System.out.println("Nombre: " + r11[0] + " - " + r11[1] + " - " + r11[2] + " - " + r11[3]);
+		}
 	}// de demoJPQL
 //--------------------------------------------------------------------------------------------------------------
 
