@@ -38,5 +38,5 @@ public class Ejercicio17 {
 		System.out.printf("Pago mensual: %1.2f", cuota );
 		System.out.printf("\nCantidad total a pagar: %1.2f euros", cantidadTotal);
 	}
-
 }
+
