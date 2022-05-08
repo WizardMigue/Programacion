@@ -1,0 +1,66 @@
+package ejer1;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class ListaSociosBaloncesto {
+	static AccesoBase abdEj01 = new AccesoBase();
+	static Scanner s = new Scanner(System.in);
+
+	public static void main(String[] args) throws SQLException {
+
+		try {
+			abdEj01.conectar();
+		} catch (ClassNotFoundException | SQLException e) {
+			System.out.println("No ha sido posible conectarse a la base de datos");
+			System.exit(0);
+		}
+
+		System.out.println();
+		System.out.println("Introduzca una localidad:");
+		String local = s.nextLine();
+		sociosPorlocalidad(local);
+
+		try {
+			abdEj01.desconectar();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private static void sociosPorlocalidad(String local) throws SQLException {
+		int cont = 0;
+		if (local.isEmpty())
+			abdEj01.consultarTodosResultSetSocios();
+		else {
+			System.out.println("LISTA DE SOCIOS POR LOCALIDAD");
+			System.out.println("=============================");
+			ArrayList<Socio> lista = abdEj01.consultarPorLocalidadSocios(local);
+			for (Socio s : lista) {
+				System.out.println(s);
+				cont++;
+			}
+			System.out.println("___________________________________________________________________________________");
+			System.out.println("Total de socios: " + cont);
+
+		}
+	}
+
+	private static void muestrasocios() {
+
+		int cont = 0;
+
+		System.out.println("LISTA DE SOCIOS");
+		System.out.println("===============");
+		ArrayList<Socio> lista = abdEj01.consultarTodosSocios();
+		for (Socio s : lista) {
+			System.out.println(s);
+			cont++;
+		}
+		System.out.println("___________________________________________________________________________________");
+		System.out.println("Total de socios: " + cont);
+
+	}
+
+}
