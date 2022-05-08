@@ -1,104 +1,121 @@
 package Ejercicio02;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import java.awt.Container;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 
-import javax.swing.JTextField;
-import javax.swing.JButton;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
-public class ControlAcceso {
+public class ControlAcceso extends JFrame implements ActionListener {
 
-	private static JFrame frame;
-	private JTextField textField, textField_1;
+	private Container panel;
+	private JLabel usuario;
+	private JLabel contraseña;
+	private JTextField usuarioText;
+	private JPasswordField passwordText;
+	private JButton aceptar;
+	private JLabel Respuesta;
+	private JLabel Imagen;
 	static AccesoBDatos abd = new AccesoBDatos();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ControlAcceso window = new ControlAcceso();
-					window.frame.setVisible(true);
+	public ControlAcceso() {
+		super("Control de Acceso");
+		panel = getContentPane();
+		panel.setLayout(null);
 
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+		usuario = new JLabel("Usuario");
+		usuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		usuario.setBounds(21, 43, 101, 33);
+		panel.add(usuario);
+
+		contraseña = new JLabel("Contraseña");
+		contraseña.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		contraseña.setBounds(21, 87, 80, 33);
+		panel.add(contraseña);
+
+		usuarioText = new JTextField();
+		usuarioText.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		usuarioText.setBounds(111, 50, 111, 20);
+		panel.add(usuarioText);
+		usuarioText.setColumns(10);
+
+		passwordText = new JPasswordField();
+		passwordText.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		passwordText.setBounds(111, 94, 111, 20);
+		panel.add(passwordText);
+		passwordText.setColumns(10);
+
+		Respuesta = new JLabel("");
+		Respuesta.setFont(new Font("Tahoma", Font.BOLD, 12));
+		Respuesta.setBounds(21, 290, 241, 14);
+		panel.add(Respuesta);
+
+		Imagen = new JLabel("");
+		Imagen.setIcon(new ImageIcon("./imagenes/candado_cerrado.png"));
+		Imagen.setBounds(171, 119, 111, 131);
+		panel.add(Imagen);
+
+		aceptar = new JButton("Aceptar");
+		aceptar.setBounds(271, 71, 89, 23);
+		panel.add(aceptar);
+		aceptar.addActionListener(this);
+
+		setSize(450, 370);
+		setVisible(true);
+		setDefaultCloseOperation(0);
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent we) {
 				try {
-					abd.conectar();
-				} catch (ClassNotFoundException e) {
-						System.out.println("No se pudo conectar con la base de datos");
-					e.printStackTrace();
+					abd.desconectar();
+					System.out.println("desconectado");
 				} catch (SQLException e) {
-						System.out.println("Error inesperado");
 					e.printStackTrace();
 				}
+				System.exit(0);
 			}
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
-	public ControlAcceso() {
-		initialize();
-	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (usuarioText.getText().isEmpty() || passwordText.getText().isEmpty())
+			JOptionPane.showMessageDialog(null, "DEBE COMPLETAR LOS DOS CAMPOS", "Mensaje", JOptionPane.ERROR_MESSAGE);
+		else {
+			try {
+				Respuesta.setText(abd.compruebaContraseña(usuarioText.getText(), passwordText.getText()));
+			} catch (SQLException e1) {
+				System.out.println("Usuario o contraseñas incorrectos");
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 565, 370);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+			}
+			;
 
-		JLabel lblNewLabel = new JLabel("Usuario: ");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel.setBounds(33, 42, 105, 26);
-		frame.getContentPane().add(lblNewLabel);
+			try {
+				if (abd.reg.getNString(3)
+						.equals(abd.compruebaContraseña(usuarioText.getText(), passwordText.getText()))) {
+					Imagen.setIcon(new ImageIcon("\"D:\\Grado_Superior_Informática\\DAM-1\\Programación\\Imagenes Candados\\candado_abierto.png\""));
+				}
 
-		JLabel lblContrasea = new JLabel("Contrase\u00F1a: ");
-		lblContrasea.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblContrasea.setBounds(33, 79, 105, 26);
-		frame.getContentPane().add(lblContrasea);
-
-		textField = new JTextField();
-		textField.setBounds(148, 47, 86, 20);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
-
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(148, 84, 86, 20);
-		frame.getContentPane().add(textField_1);
-
-		JButton btnNewButton = new JButton("Aceptar");
-		
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNewButton.setBounds(311, 44, 118, 23);
-		frame.getContentPane().add(btnNewButton) {
-			public void actionPerformed (ActionEvent e) {
-				
+			} catch (SQLException e1) {
+				System.out.println("Usuario o contraseña incorrectos");
+				Imagen.setIcon(new ImageIcon("\"D:\\Grado_Superior_Informática\\DAM-1\\Programación\\Imagenes Candados\\candado_cerradp.png\""));
 			}
 		}
-
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\DAM1alu15\\Downloads\\candado_cerrado.png"));
-		lblNewLabel_1.setBounds(148, 160, 95, 144);
-		frame.getContentPane().add(lblNewLabel_1);
-
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\DAM1alu15\\Downloads\\candado_abierto.png"));
-		lblNewLabel_2.setBounds(285, 160, 109, 144);
-		frame.getContentPane().add(lblNewLabel_2);
-		lblNewLabel_2.setVisible(false);
 	}
+
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		ControlAcceso ventana = new ControlAcceso();
+		abd.conectar();
+
+	}
+
 }
