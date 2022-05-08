@@ -1,15 +1,18 @@
 package ejer1;
 
 public class Usuario {
-	String username;
-	String password;
-	String nombre;
 
-	public Usuario(String username, String password, String nombre) {
-		super();
+	private String username;
+	private int password;
+	private String nombre;
+
+	public Usuario(String username, int password, String nombre) {
 		this.username = username;
 		this.password = password;
 		this.nombre = nombre;
+	}
+
+	public Usuario() {
 	}
 
 	public String getUsername() {
@@ -20,11 +23,11 @@ public class Usuario {
 		this.username = username;
 	}
 
-	public String getPassword() {
+	public int getPassword() {
 		return password;
 	}
 
-	public void setPassword(String password) {
+	public void setPassword(int password) {
 		this.password = password;
 	}
 

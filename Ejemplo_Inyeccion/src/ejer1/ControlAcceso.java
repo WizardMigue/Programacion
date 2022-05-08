@@ -1,116 +1,145 @@
 package ejer1;
 
-import java.awt.Container;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.sql.SQLException;
+import java.awt.EventQueue;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
+
+import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
 import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.ImageIcon;
 
-public class ControlAcceso extends JFrame implements ActionListener {
+public class ControlAcceso {
 
-	private Container panel;
-	private JLabel usuario;
-	private JLabel contraseña;
+	private JFrame frmControlDeAcceso;
 	private JTextField usuarioText;
-	private JPasswordField passwordText;
-	private JButton aceptar;
-	private JLabel Respuesta;
+	private JTextField passwordText;
 	private JLabel Imagen;
-	static ControlAcceso abd= new ControlAcceso();
+	private JLabel Respuesta;
+
+	static AccesoBase abd = new AccesoBase();
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ControlAcceso window = new ControlAcceso();
+					window.frmControlDeAcceso.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				try {
+					abd.conectar();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
 	public ControlAcceso() {
-		super("Control de Acceso");
-		panel = getContentPane();
-		panel.setLayout(null);
+		initialize();
+	}
 
-		usuario = new JLabel("Usuario");
-		usuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		usuario.setBounds(21, 43, 101, 33);
-		panel.add(usuario);
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frmControlDeAcceso = new JFrame();
+		frmControlDeAcceso.setTitle("Control de Acceso");
+		frmControlDeAcceso.setBounds(100, 100, 450, 300);
+		frmControlDeAcceso.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmControlDeAcceso.getContentPane().setLayout(null);
 
-		contraseña = new JLabel("Contraseña");
-		contraseña.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		contraseña.setBounds(21, 87, 80, 33);
-		panel.add(contraseña);
+		JLabel lblNewLabel = new JLabel("Usuario");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel.setBounds(21, 43, 101, 33);
+		frmControlDeAcceso.getContentPane().add(lblNewLabel);
+
+		JLabel lblNewLabel_1 = new JLabel("Contrase\u00F1a");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_1.setBounds(21, 87, 80, 33);
+		frmControlDeAcceso.getContentPane().add(lblNewLabel_1);
 
 		usuarioText = new JTextField();
 		usuarioText.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		usuarioText.setBounds(111, 50, 111, 20);
-		panel.add(usuarioText);
+		frmControlDeAcceso.getContentPane().add(usuarioText);
 		usuarioText.setColumns(10);
 
 		passwordText = new JPasswordField();
 		passwordText.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		passwordText.setBounds(111, 94, 111, 20);
-		panel.add(passwordText);
+		frmControlDeAcceso.getContentPane().add(passwordText);
 		passwordText.setColumns(10);
 
 		Respuesta = new JLabel("");
 		Respuesta.setFont(new Font("Tahoma", Font.BOLD, 12));
-		Respuesta.setBounds(21, 290, 241, 14);
-		panel.add(Respuesta);
+		Respuesta.setBounds(21, 210, 241, 14);
+		frmControlDeAcceso.getContentPane().add(Respuesta);
 
 		Imagen = new JLabel("");
-		Imagen.setIcon(new ImageIcon("imagenes/candado_cerrado.png"));
-		Imagen.setBounds(171, 119, 111, 131);
-		panel.add(Imagen);
+		Imagen.setIcon(new ImageIcon("./imagenes/candado_cerrado.png"));
+		Imagen.setBounds(271, 119, 111, 131);
+		frmControlDeAcceso.getContentPane().add(Imagen);
 
-		aceptar = new JButton("Aceptar");
+		JButton aceptar = new JButton("Aceptar");
 		aceptar.setBounds(271, 71, 89, 23);
-		panel.add(aceptar);
-		aceptar.addActionListener(this);
+		frmControlDeAcceso.getContentPane().add(aceptar);
+		aceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (usuarioText.getText().isEmpty() | passwordText.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Debe completar los dos campos!", "Mensaje",
+							JOptionPane.ERROR_MESSAGE);
+				} else {
+					try {
+						Respuesta.setText(abd.compruebaContraseÃ±a(usuarioText.getText(), passwordText.getText()));
 
-		setSize( 450, 370);
-		setVisible(true);
-		setDefaultCloseOperation(0);
-		addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent we) {
-		try {
-			abd.desconectar();
-			System.out.println("desconectado");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.exit(0);}
-		});
-	}
+						if (abd.reg.getNString(3)
+								.equals(abd.compruebaContraseÃ±a(usuarioText.getText(), passwordText.getText()))) {
+							Imagen.setIcon(new ImageIcon("./imagenes/candado_abierto.png"));
+						}
+						if ((abd.compruebaContraseÃ±a(usuarioText.getText(), passwordText.getText())
+								.equals("El usuario/contraseï¿½a es incorrecto.")))
+							Imagen.setIcon(new ImageIcon("./imagenes/candado_cerrado.png"));
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if(usuarioText.getText().isEmpty()||passwordText.getText().isEmpty())
-			JOptionPane.showMessageDialog(null, "DEBE COMPLETAR LOS DOS CAMPOS", "Mensaje", JOptionPane.ERROR_MESSAGE);
-		else {
-		try {
-			Respuesta.setText(abd.compruebaContraseña(usuarioText.getText(), passwordText.getText()));
-		} catch (SQLException e1) {
-			System.out.println("Usuario o contraseñas incorrectos");
-		};
-		
-		try {
-			if (abd.reg.getNString(3).equals(abd.compruebaContraseña(usuarioText.getText(), passwordText.getText()))) {
-				Imagen.setIcon(new ImageIcon("imagenes/candado_abierto.png"));
+					} catch (SQLException e1) {
+
+					}
+				}
 			}
-			
-		} catch (SQLException e1) {
-			System.out.println("Usuario o contraseña incorrectos");
-			Imagen.setIcon(new ImageIcon("imagenes/candado_cerrado.png"));
-		}}
-	}
+		});
 
-	public static void main(String[] args) throws ClassNotFoundException, SQLException {
-		ControlAcceso ventana = new ControlAcceso();
-		abd.conectar();
-	
+		frmControlDeAcceso.addWindowListener(new java.awt.event.WindowAdapter() {
+			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+				try {
+					abd.desconectar();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+
 	}
 
 }
