@@ -10,9 +10,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-//
-// Alberto Carrera Martín - Abril 2020
-//
 
 public class AccesoBdatos {
 	private EntityManagerFactory emf;
@@ -30,8 +27,7 @@ public class AccesoBdatos {
 
 	public DepartamentoEntity buscarDepartamento(int numDepartamento) {
 		return em.find(DepartamentoEntity.class, numDepartamento);
-	}// de método buscarDepartamento
-		//
+	}
 
 	@SuppressWarnings("deprecation")
 	public void imprimirDepartamento(int numDepartamento) {
@@ -66,7 +62,7 @@ public class AccesoBdatos {
 
 			System.out.println(datos);
 		}
-	} // de método imprimirDepartamento
+	}
 
 	public boolean insertarDepartamento(DepartamentoEntity d) {
 		if (buscarDepartamento(d.getDptoId()) != null)
@@ -75,7 +71,7 @@ public class AccesoBdatos {
 		em.persist(d);
 		em.getTransaction().commit();
 		return true;
-	} // de insertarDepartamento
+	}
 
 	public boolean modificarDepartamento(DepartamentoEntity d) {
 		DepartamentoEntity departamentoBuscado = buscarDepartamento(d.getDptoId());
@@ -87,12 +83,7 @@ public class AccesoBdatos {
 		em.persist(departamentoBuscado);
 		em.getTransaction().commit();
 		return true;
-	} // de modificarDepartamento
-
-	// Si tiene empleados lo borraría igual, dejando en estos el número de
-	// Departamento
-	// pero el resto de los atributos del departamento a null. Por eso no dejo
-	// borrar
+	}
 
 	public boolean borrarDepartamento(int numDepartamento) {
 		DepartamentoEntity departamentoBuscado = buscarDepartamento(numDepartamento);
@@ -180,14 +171,111 @@ public class AccesoBdatos {
 			System.out.println("Nombre: " + r10[0] + " - " + r10[1] + " - " + r10[2] + " - " + r10[3]);
 		}
 		System.out.println();
-		TypedQuery<Object[]> query7 = em
-				.createQuery("select e.departamento.nombre, count(e.nombre), sum(e.salario), max(e.salario) "
-						+ " from EmpleadoEntity e " + " group by e.departamento.nombre" + " having count(e.nombre) >=5", Object[].class);
+		TypedQuery<Object[]> query7 = em.createQuery(
+				"select e.departamento.nombre, count(e.nombre), sum(e.salario), max(e.salario) "
+						+ " from EmpleadoEntity e " + " group by e.departamento.nombre" + " having count(e.nombre) >=5",
+				Object[].class);
 		List<Object[]> l11 = query7.getResultList();
 		for (Object[] r11 : l11) {
 			System.out.println("Nombre: " + r11[0] + " - " + r11[1] + " - " + r11[2] + " - " + r11[3]);
 		}
-	}// de demoJPQL
-//--------------------------------------------------------------------------------------------------------------
+		System.out.println();
+		TypedQuery<Object[]> query8 = em.createQuery(
+				"select e.nombre, e.dirId.nombre, e.departamento.dptoId" + " from EmpleadoEntity e ", Object[].class);
+		List<Object[]> l12 = query8.getResultList();
+		for (Object[] r12 : l12) {
+			System.out.println("Nombre: " + r12[0] + " - su jefe es - " + r12[1] + " - departamento - " + r12[2]);
+		}
+		System.out.println();
+		TypedQuery<Object[]> query9 = em.createQuery("select d.nombre, count(d2) "
+				+ " from DepartamentoEntity d join d.empleados d2 " + " group by d.nombre", Object[].class);
+		List<Object[]> l13 = query9.getResultList();
+		for (Object[] r13 : l13) {
+			System.out.println("Nombre: " + r13[0] + " - " + r13[1]);
+		}
+		System.out.println();
+		TypedQuery<Object[]> query10 = em.createQuery("select d.nombre, count(d2) "
+				+ " from DepartamentoEntity d left join d.empleados d2 " + " group by d.nombre", Object[].class);
+		List<Object[]> l14 = query10.getResultList();
+		for (Object[] r14 : l14) {
+			System.out.println("Nombre: " + r14[0] + " - " + r14[1]);
+		}
+		System.out.println();
+		TypedQuery<Object[]> query11 = em.createQuery("select e.departamento.dptoId, e.nombre, e.salario "
+				+ " from EmpleadoEntity e " + " order by e.salario desc, e.salario asc", Object[].class);
+		List<Object[]> l15 = query11.getResultList();
+		for (Object[] r15 : l15) {
+			System.out.println("Nombre: " + r15[0] + " - " + r15[1] + " - " + r15[2]);
+		}
+		System.out.println();
+		TypedQuery<Object[]> query12 = em.createQuery(
+				"select e.empnoId, e.nombre " + " from EmpleadoEntity e " + " where e.dirId is null", Object[].class);
+		List<Object[]> l16 = query12.getResultList();
+		for (Object[] r16 : l16) {
+			System.out.println("Nombre: " + r16[0] + " - " + r16[1]);
+		}
+		System.out.println();
+		TypedQuery<Object[]> query13 = em.createQuery("select d.dptoId, d.nombre "
+				+ " from DepartamentoEntity d left join d.empleados d2 " + " where 1039 member of d2.empnoId ",
+				Object[].class);
+		List<Object[]> l17 = query13.getResultList();
+		for (Object[] r17 : l17) {
+			System.out.println("Nombre: " + r17[0] + " - " + r17[1]);
+		}
+	}
 
-} // de la clase
+	public int incrementarSalario(int cantidad) {
+		int cuenta;
+		em.getTransaction().begin();
+		Query q = em.createQuery("UPDATE EmpleadoEntityEj set salario= salario + :n");
+		q.setParameter("n", cantidad);
+		cuenta = q.executeUpdate();
+		em.getTransaction().commit();
+		return cuenta;
+	}
+
+	public int incrementarOficio(String oficio, int cantidad) {
+		int cuenta;
+		em.getTransaction().begin();
+		Query q = em.createQuery("UPDATE EmpleadoEntityEj set salario= salario + :n where oficio= :s");
+		q.setParameter("n", cantidad);
+		q.setParameter("s", oficio);
+		cuenta = q.executeUpdate();
+		em.getTransaction().commit();
+		return cuenta;
+	}
+
+	public int incrementarSalarioDepartamento(int numDepartamento, int cantidad) {
+		int cuenta;
+		em.getTransaction().begin();
+		Query q = em
+				.createQuery("UPDATE EmpleadoEntityEj set salario= salario + :n where departamento.getDptoId()= :s");
+		q.setParameter("n", cantidad);
+		q.setParameter("s", numDepartamento);
+		cuenta = q.executeUpdate();
+		em.getTransaction().commit();
+		return cuenta;
+	}
+
+	public int borrarEmpleado(int numEmpleado) {
+		int cuenta;
+		em.getTransaction().begin();
+		Query q = em.createQuery("DELETE FROM EmpleadoEntityEj where empnoId= :n");
+		q.setParameter("n", numEmpleado);
+		cuenta = q.executeUpdate();
+		em.getTransaction().commit();
+		return cuenta;
+	}
+
+	public int borrarDepartamentoJPQL(int numDepartamento) {
+		int cuenta;
+		em.getTransaction().begin();
+		Query q = em.createQuery("DELETE FROM DepartamentoEntityEj where dptoId= :n");
+		q.setParameter("n", numDepartamento);
+		cuenta = q.executeUpdate();
+		em.getTransaction().commit();
+		return cuenta;
+	}
+
+}
+//--------------------------------------------------------------------------------------------------------------
