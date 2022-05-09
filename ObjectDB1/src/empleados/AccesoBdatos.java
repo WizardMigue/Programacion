@@ -248,7 +248,8 @@ public class AccesoBdatos {
 	public int incrementarSalarioDepartamento(int numDepartamento, int cantidad) {
 		int cuenta;
 		em.getTransaction().begin();
-		Query q = em.createQuery("UPDATE EmpleadoEntityEj set salario = salario + :n where departamento.getDptoId() = :s");
+		Query q = em
+				.createQuery("UPDATE EmpleadoEntityEj set salario = salario + :n where departamento.getDptoId() = :s");
 		q.setParameter("n", cantidad);
 		q.setParameter("s", numDepartamento);
 		cuenta = q.executeUpdate();
