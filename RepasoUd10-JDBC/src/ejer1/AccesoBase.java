@@ -2,6 +2,7 @@ package ejer1;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -29,9 +30,9 @@ public class AccesoBase {
 		ArrayList<Socio> lista = new ArrayList<Socio>();
 
 		try {
-			Statement consulta = conecta.createStatement();
+			PreparedStatement consulta = conecta.prepareStatement(database);
 			ResultSet reg = consulta.executeQuery("SELECT * FROM socio");
-			while (reg.next()) { // reg.getint(id..), reg.getint(nombre), reg.getint(precio)
+			while (reg.next()) {
 				Socio socio = new Socio(reg.getInt(1), reg.getString(2), reg.getInt(3), reg.getInt(4),
 						reg.getString(5));
 				lista.add(socio);
@@ -45,7 +46,7 @@ public class AccesoBase {
 
 	public Socio consultarIdSocios(int numero) {
 		try {
-			Statement consulta = conecta.createStatement();
+			PreparedStatement consulta = conecta.prepareStatement(database);
 			ResultSet reg = consulta.executeQuery("SELECT * FROM socio WHERE id =" + numero);
 
 			Socio socio = new Socio();
@@ -69,7 +70,7 @@ public class AccesoBase {
 	public ArrayList<Socio> consultarPorLocalidadSocios(String localidad) {
 		ArrayList<Socio> lista = new ArrayList<Socio>();
 		try {
-			Statement consulta = conecta.createStatement();
+			PreparedStatement consulta = conecta.prepareStatement(localidad);
 
 			ResultSet reg = consulta.executeQuery("SELECT * FROM socio  where localidad LIKE '" + localidad + "'");
 
@@ -89,7 +90,7 @@ public class AccesoBase {
 	}
 
 	public void consultarTodosResultSetSocios() throws SQLException {
-		Statement consulta = conecta.createStatement();
+		PreparedStatement consulta = conecta.prepareStatement(database);
 		imprimirDatosResulSet(consulta.executeQuery("SELECT * FROM socio"));
 	}
 
@@ -108,7 +109,6 @@ public class AccesoBase {
 
 	}
 
-	//
 	public void desconectar() throws SQLException {
 		if (conecta != null) {
 			conecta.close();

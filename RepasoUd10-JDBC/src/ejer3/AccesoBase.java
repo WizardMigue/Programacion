@@ -2,9 +2,9 @@ package ejer3;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class AccesoBase {
 
@@ -25,7 +25,7 @@ public class AccesoBase {
 	}
 
 	public ResultSet consulta(String cadenaSQL) throws SQLException {
-		Statement consulta = conecta.createStatement();
+		PreparedStatement consulta = conecta.prepareStatement(cadenaSQL);
 		ResultSet reg = consulta.executeQuery(cadenaSQL);
 		return reg;
 	}

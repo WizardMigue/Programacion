@@ -2,9 +2,9 @@ package ejer2;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class AccesoBase {
 
@@ -25,7 +25,7 @@ public class AccesoBase {
 	}
 
 	public String compruebaContraseña(String usu, String pass) throws SQLException {
-		Statement consulta = conecta.createStatement();
+		PreparedStatement consulta = conecta.prepareStatement(database);
 		reg = consulta.executeQuery("select * from usuario where username = '" + usu + "' and password='" + pass + "'");
 		if (reg.next())
 			return reg.getNString(3);
