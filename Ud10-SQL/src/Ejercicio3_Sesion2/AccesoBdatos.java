@@ -1,8 +1,3 @@
-/*
- * Revisado para versión 8.19 de MySQL 
- * Alberto Carrera Martín
- * 29 febrero 2020
- */
 package Ejercicio3_Sesion2;
 
 import java.sql.*;
@@ -19,9 +14,6 @@ public class AccesoBdatos {
 			+ "?serverTimezone=Europe/Madrid";
 	private static String username = "root";
 	private static String password = "root";
-
-// NUNCA CONECTARSE CON USUARIO ROOT!!!!!!!!!!!!!!!!!!!
-// SOLO PARA PRUEBAS!!!!!!!
 
 	public Connection conecta;
 
@@ -67,8 +59,7 @@ public class AccesoBdatos {
 			System.out.println("error en la consulta" + e.getMessage());
 			return null;
 		}
-	} // consultarporLocalidad
-		//
+	}
 
 	public ResultSet consultarPorLocalidadResultSet(String Localidad) throws SQLException {
 		PreparedStatement consulta;
@@ -87,7 +78,6 @@ public class AccesoBdatos {
 		return reg;
 	}
 
-	//
 	public void desconectar() throws SQLException {
 		if (conecta != null) {
 			conecta.close();

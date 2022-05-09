@@ -117,8 +117,7 @@ public class Control_Acceso {
 						if (abd.reg.getNString(3)
 								.equals(abd.compruebaContraseña(usuarioText.getText(), passwordText.getText()))) {
 							Imagen.setIcon(new ImageIcon("./imagenes/candado_abierto.png"));
-						}
-						if ((abd.compruebaContraseña(usuarioText.getText(), passwordText.getText())
+						} else if ((abd.compruebaContraseña(usuarioText.getText(), passwordText.getText())
 								.equals("El usuario/contraseña es incorrecto.")))
 							Imagen.setIcon(new ImageIcon("./imagenes/candado_cerrado.png"));
 

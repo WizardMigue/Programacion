@@ -1,8 +1,3 @@
-/*
- * Revisado para versión 8.19 de MySQL 
- * Alberto Carrera Martín
- * 29 febrero 2020
- */
 package Ejercicio3_Sesion1;
 
 import java.sql.*;
@@ -20,9 +15,6 @@ public class AccesoBdatos {
 	private static String username = "root";
 	private static String password = "root";
 
-// NUNCA CONECTARSE CON USUARIO ROOT!!!!!!!!!!!!!!!!!!!
-// SOLO PARA PRUEBAS!!!!!!!
-
 	public Connection conecta;
 
 	public void conectar() throws SQLException, ClassNotFoundException {
@@ -34,7 +26,7 @@ public class AccesoBdatos {
 		ArrayList<Socio> lista = new ArrayList<Socio>();
 
 		try {
-			Statement consulta = conecta.createStatement();
+			PreparedStatement consulta = conecta.prepareStatement(database);
 			ResultSet reg = consulta.executeQuery("SELECT * FROM socio");
 			while (reg.next()) {
 				Socio socio = new Socio(reg.getInt(1), reg.getString(2), reg.getInt(3), reg.getInt(4),
@@ -51,7 +43,7 @@ public class AccesoBdatos {
 	public ArrayList<Socio> consultarPorLocalidad(String Localidad) {
 		ArrayList<Socio> lista = new ArrayList<Socio>();
 		try {
-			Statement consulta = conecta.createStatement();
+			PreparedStatement consulta = conecta.prepareStatement(Localidad);
 			ResultSet reg = consulta.executeQuery("SELECT * FROM socio WHERE localidad LIKE '%" + Localidad + "%'");
 
 			while (reg.next()) {
@@ -65,11 +57,10 @@ public class AccesoBdatos {
 			System.out.println("error en la consulta" + e.getMessage());
 			return null;
 		}
-	} // consultarporLocalidad
-		//
+	}
 
 	public ResultSet consultarPorLocalidadResultSet(String Localidad) throws SQLException {
-		Statement consulta = conecta.createStatement();
+		PreparedStatement consulta = conecta.prepareStatement(Localidad);
 		ResultSet reg = (consulta.executeQuery("SELECT * FROM socio WHERE localidad LIKE '%" + Localidad + "%'"));
 
 		return reg;
@@ -77,13 +68,12 @@ public class AccesoBdatos {
 	}
 
 	public ResultSet consultarTodosResultSetSocios() throws SQLException {
-		Statement consulta = conecta.createStatement();
+		PreparedStatement consulta = conecta.prepareStatement(database);
 		ResultSet reg = (consulta.executeQuery("SELECT * FROM socio"));
 
 		return reg;
 	}
 
-	//
 	public void desconectar() throws SQLException {
 		if (conecta != null) {
 			conecta.close();

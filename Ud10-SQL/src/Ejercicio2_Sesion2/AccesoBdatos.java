@@ -1,8 +1,3 @@
-/*
- * Revisado para versión 8.19 de MySQL 
- * Alberto Carrera Martín
- * 29 febrero 2020
- */
 package Ejercicio2_Sesion2;
 
 import java.sql.*;
@@ -18,9 +13,6 @@ public class AccesoBdatos {
 	private static String username = "root";
 	private static String password = "root";
 	static ResultSet reg;
-
-// NUNCA CONECTARSE CON USUARIO ROOT!!!!!!!!!!!!!!!!!!!
-// SOLO PARA PRUEBAS!!!!!!!
 
 	public Connection conecta;
 
@@ -58,9 +50,6 @@ public class AccesoBdatos {
 
 	}
 
-	//
-
-	//
 	public void desconectar() throws SQLException {
 		if (conecta != null) {
 			conecta.close();
