@@ -49,3 +49,54 @@ Type empleados.EmpleadoEntity is not enhanced.
 [2022-05-09 10:24:22 #5 store] 
 Database 'C:\Users\DAM1alu15\git\Programacion\ObjectDB1\db\empleados.odb' is closed by 8260@B01-PC15
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-05-09 10:57:39 #1 store] 
+Database 'C:\Users\DAM1alu15\git\Programacion\ObjectDB1\db\empleados.odb' is opened by 7648@B01-PC15
+
+[2022-05-09 10:57:39 #2 store] 
+Configuration path: ?
+
+[2022-05-09 10:57:39 #3 type] 
+Type empleados.DepartamentoEntity is not enhanced.
+
+[2022-05-09 10:57:39 #4 type] 
+Type empleados.EmpleadoEntity is not enhanced.
+
+[2022-05-09 10:57:40 #5 store] 
+Database 'C:\Users\DAM1alu15\git\Programacion\ObjectDB1\db\empleados.odb' is closed by 7648@B01-PC15
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-05-09 10:58:55 #1 store] 
+Database 'C:\Users\DAM1alu15\git\Programacion\ObjectDB1\db\empleados.odb' is opened by 11040@B01-PC15
+
+[2022-05-09 10:58:55 #2 store] 
+Configuration path: ?
+
+[2022-05-09 10:58:56 #3 type] 
+Type empleados.DepartamentoEntity is not enhanced.
+
+[2022-05-09 10:58:56 #4 type] 
+Type empleados.EmpleadoEntity is not enhanced.
+
+[2022-05-09 10:58:56 #5 store] 
+Database 'C:\Users\DAM1alu15\git\Programacion\ObjectDB1\db\empleados.odb' is closed by 11040@B01-PC15
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-05-09 11:00:00 #1 store] 
+Database 'C:\Users\DAM1alu15\git\Programacion\ObjectDB1\db\empleados.odb' is opened by 5996@B01-PC15
+
+[2022-05-09 11:00:00 #2 store] 
+Configuration path: ?
+
+[2022-05-09 11:00:01 #3 type] 
+Type empleados.DepartamentoEntity is not enhanced.
+
+[2022-05-09 11:00:01 #4 type] 
+Type empleados.EmpleadoEntity is not enhanced.
+
+[2022-05-09 11:00:01 #5 store] 
+Database 'C:\Users\DAM1alu15\git\Programacion\ObjectDB1\db\empleados.odb' is closed by 5996@B01-PC15
+
