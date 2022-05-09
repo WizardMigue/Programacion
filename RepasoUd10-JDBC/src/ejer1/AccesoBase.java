@@ -28,7 +28,6 @@ public class AccesoBase {
 
 	public ArrayList<Socio> consultarTodosSocios() {
 		ArrayList<Socio> lista = new ArrayList<Socio>();
-
 		try {
 			PreparedStatement consulta = conecta.prepareStatement(database);
 			ResultSet reg = consulta.executeQuery("SELECT * FROM socio");
