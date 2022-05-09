@@ -34,9 +34,8 @@ public class AccesoBase {
 
 	public Empleado busquedaPorCodigo(int numero) throws SQLException {
 		Empleado e = new Empleado();
-		PreparedStatement consulta;
 		String cadenaSQL = "select * from emp where EMPNO = ? ";
-		consulta = conecta.prepareStatement(cadenaSQL);
+		PreparedStatement consulta = conecta.prepareStatement(cadenaSQL);
 		consulta.setInt(1, numero);
 		ResultSet reg = consulta.executeQuery();
 
@@ -133,11 +132,9 @@ public class AccesoBase {
 			PreparedStatement consulta = conecta.prepareStatement(cadenaSQL);
 			consulta.setDouble(1, porcentaje);
 			consulta.setInt(2, departamento);
-
 			return consulta.executeUpdate();
-
 		} catch (SQLException e) {
-			System.out.print(" ERROR: ");
+			System.out.print(" No se ha actualizado el salario ");
 			return e.getErrorCode();
 		}
 	}
@@ -151,11 +148,9 @@ public class AccesoBase {
 			consulta.setInt(2, departamento);
 			conecta.commit();
 			conecta.setAutoCommit(true);
-
 			return consulta.executeUpdate();
-
 		} catch (SQLException e) {
-			System.out.print(" ERROR: ");
+			System.out.print(" No se ha actualizado el salario ");
 			conecta.rollback();
 			conecta.setAutoCommit(true);
 			return e.getErrorCode();
@@ -164,13 +159,11 @@ public class AccesoBase {
 	}
 
 	public int borrarEmpleado(int numero) {
-		String cadenaSQL = "delete from emp  where EMPNO=?";
+		String cadenaSQL = "delete from emp where EMPNO=?";
 		try {
 			PreparedStatement consulta = conecta.prepareStatement(cadenaSQL);
 			consulta.setInt(1, numero);
-
 			return consulta.executeUpdate();
-
 		} catch (SQLException e) {
 			return -1;
 		}
