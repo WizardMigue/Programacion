@@ -1,0 +1,51 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-05-09 10:23:27 #1 store] 
+Database 'C:\Users\DAM1alu15\git\Programacion\ObjectDB1\db\empleados.odb' is opened by 2992@B01-PC15
+
+[2022-05-09 10:23:27 #2 store] 
+Configuration path: ?
+
+[2022-05-09 10:23:27 #3 type] 
+Type empleados.DepartamentoEntity is not enhanced.
+
+[2022-05-09 10:23:27 #4 type] 
+Type empleados.EmpleadoEntity is not enhanced.
+
+[2022-05-09 10:23:28 #5 store] 
+Database 'C:\Users\DAM1alu15\git\Programacion\ObjectDB1\db\empleados.odb' is closed by 2992@B01-PC15
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-05-09 10:24:02 #1 store] 
+Database 'C:\Users\DAM1alu15\git\Programacion\ObjectDB1\db\empleados.odb' is opened by 12084@B01-PC15
+
+[2022-05-09 10:24:02 #2 store] 
+Configuration path: ?
+
+[2022-05-09 10:24:02 #3 type] 
+Type empleados.DepartamentoEntity is not enhanced.
+
+[2022-05-09 10:24:02 #4 type] 
+Type empleados.EmpleadoEntity is not enhanced.
+
+[2022-05-09 10:24:02 #5 store] 
+Database 'C:\Users\DAM1alu15\git\Programacion\ObjectDB1\db\empleados.odb' is closed by 12084@B01-PC15
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-05-09 10:24:22 #1 store] 
+Database 'C:\Users\DAM1alu15\git\Programacion\ObjectDB1\db\empleados.odb' is opened by 8260@B01-PC15
+
+[2022-05-09 10:24:22 #2 store] 
+Configuration path: ?
+
+[2022-05-09 10:24:22 #3 type] 
+Type empleados.DepartamentoEntity is not enhanced.
+
+[2022-05-09 10:24:22 #4 type] 
+Type empleados.EmpleadoEntity is not enhanced.
+
+[2022-05-09 10:24:22 #5 store] 
+Database 'C:\Users\DAM1alu15\git\Programacion\ObjectDB1\db\empleados.odb' is closed by 8260@B01-PC15
+
