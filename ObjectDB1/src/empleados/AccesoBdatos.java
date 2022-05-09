@@ -93,7 +93,7 @@ public class AccesoBdatos {
 		em.remove(departamentoBuscado);
 		em.getTransaction().commit();
 		return true;
-	} // de modificarDepartamento
+	}
 
 	public void demoJPQL() {
 
@@ -227,7 +227,7 @@ public class AccesoBdatos {
 	public int incrementarSalario(int cantidad) {
 		int cuenta;
 		em.getTransaction().begin();
-		Query q = em.createQuery("UPDATE EmpleadoEntityEj set salario= salario + :n");
+		Query q = em.createQuery("UPDATE EmpleadoEntityEj set salario = salario + :n");
 		q.setParameter("n", cantidad);
 		cuenta = q.executeUpdate();
 		em.getTransaction().commit();
@@ -237,7 +237,7 @@ public class AccesoBdatos {
 	public int incrementarOficio(String oficio, int cantidad) {
 		int cuenta;
 		em.getTransaction().begin();
-		Query q = em.createQuery("UPDATE EmpleadoEntityEj set salario= salario + :n where oficio= :s");
+		Query q = em.createQuery("UPDATE EmpleadoEntityEj set salario = salario + :n where oficio = :s");
 		q.setParameter("n", cantidad);
 		q.setParameter("s", oficio);
 		cuenta = q.executeUpdate();
@@ -248,8 +248,7 @@ public class AccesoBdatos {
 	public int incrementarSalarioDepartamento(int numDepartamento, int cantidad) {
 		int cuenta;
 		em.getTransaction().begin();
-		Query q = em
-				.createQuery("UPDATE EmpleadoEntityEj set salario= salario + :n where departamento.getDptoId()= :s");
+		Query q = em.createQuery("UPDATE EmpleadoEntityEj set salario = salario + :n where departamento.getDptoId() = :s");
 		q.setParameter("n", cantidad);
 		q.setParameter("s", numDepartamento);
 		cuenta = q.executeUpdate();
@@ -260,7 +259,7 @@ public class AccesoBdatos {
 	public int borrarEmpleado(int numEmpleado) {
 		int cuenta;
 		em.getTransaction().begin();
-		Query q = em.createQuery("DELETE FROM EmpleadoEntityEj where empnoId= :n");
+		Query q = em.createQuery("DELETE FROM EmpleadoEntityEj where empnoId = :n");
 		q.setParameter("n", numEmpleado);
 		cuenta = q.executeUpdate();
 		em.getTransaction().commit();
@@ -270,7 +269,7 @@ public class AccesoBdatos {
 	public int borrarDepartamentoJPQL(int numDepartamento) {
 		int cuenta;
 		em.getTransaction().begin();
-		Query q = em.createQuery("DELETE FROM DepartamentoEntityEj where dptoId= :n");
+		Query q = em.createQuery("DELETE FROM DepartamentoEntityEj where dptoId = :n");
 		q.setParameter("n", numDepartamento);
 		cuenta = q.executeUpdate();
 		em.getTransaction().commit();
