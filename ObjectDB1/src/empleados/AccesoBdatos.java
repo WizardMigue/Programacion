@@ -99,24 +99,24 @@ public class AccesoBdatos {
 
 		Query q1 = em.createQuery("SELECT COUNT(d) FROM DepartamentoEntity d");
 		System.out.println("Total Departamentos: " + q1.getSingleResult());
-		//
+		System.out.println();
 		TypedQuery<Long> tq1 = em.createQuery("SELECT COUNT(d) FROM DepartamentoEntity d", Long.class);
 		System.out.println("Total Departamentos: " + tq1.getSingleResult());
-		//
+		System.out.println();
 		TypedQuery<DepartamentoEntity> tq2 = em.createQuery("SELECT d FROM DepartamentoEntity d",
 				DepartamentoEntity.class);
 		List<DepartamentoEntity> l2 = tq2.getResultList();
 		for (DepartamentoEntity r2 : l2) {
 			System.out.println("Nombre :  " + r2.getNombre() + ", Localidad: " + r2.getLocalidad());
 		}
-		//
+		System.out.println();
 		TypedQuery<Object[]> tq3 = em.createQuery("SELECT d.nombre, d.localidad FROM DepartamentoEntity  d",
 				Object[].class);
 		List<Object[]> l3 = tq3.getResultList();
 		for (Object[] r3 : l3) {
 			System.out.println("Nombre :  " + r3[0] + ", Localidad: " + r3[1]);
 		}
-		// */
+		System.out.println();
 		TypedQuery<Object[]> tq4 = em.createQuery(
 				"SELECT d.nombre, d.localidad FROM DepartamentoEntity d" + " WHERE d.dptoId != :n", Object[].class);
 		tq4.setParameter("n", 10);

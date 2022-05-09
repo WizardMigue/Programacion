@@ -89,14 +89,14 @@ public class AccesoBdatos {
 		//
 
 	public void consultarPorLocalidadResultSet(String Localidad) throws SQLException {
-		Statement consulta = conecta.createStatement();
+		PreparedStatement consulta = conecta.prepareStatement(Localidad);
 		ImprimirDatos(consulta.executeQuery("SELECT * FROM socio WHERE localidad LIKE '%" + Localidad + "%'"));
 
 	}
 
 	//
 	public void consultarTodosResultSetSocios() throws SQLException {
-		Statement consulta = conecta.createStatement();
+		PreparedStatement consulta = conecta.prepareStatement(null);
 		ImprimirDatos(consulta.executeQuery("SELECT * FROM socio"));
 	}
 
