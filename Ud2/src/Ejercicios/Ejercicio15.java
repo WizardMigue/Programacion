@@ -7,7 +7,7 @@ public class Ejercicio15 {
 	public static void main(String[] args) {
 		Scanner s = new Scanner(System.in);
 
-		int cuentaPrimos = 0, numero=1;
+		int cuentaPrimos = 0, numero = 1;
 		while (cuentaPrimos < 100) {
 			int contador = 0, resto;
 
@@ -22,10 +22,6 @@ public class Ejercicio15 {
 			}
 			numero++;
 		}
-	}       
-	
+	}
+
 }
-
-
-
-

@@ -7,7 +7,6 @@ public class Ejercicio6 {
 			}
 		}
 		return true;
-
 	}// de esPrimo
 
 	public static void rellenar(int[] n) {
@@ -39,11 +38,11 @@ public class Ejercicio6 {
 	}
 
 	public static void main(String[] args) {
-		int tamanyo= 10,tamanyoPrimos;
-		int[]n = new int[tamanyo];
-		int[]primos=new int[tamanyo];
+		int tamanyo = 10, tamanyoPrimos;
+		int[] n = new int[tamanyo];
+		int[] primos = new int[tamanyo];
 		rellenar(n);
-		tamanyoPrimos= rellenarPrimos(n, primos);
+		tamanyoPrimos = rellenarPrimos(n, primos);
 		visualizar(n, primos, tamanyoPrimos);
 	}
 

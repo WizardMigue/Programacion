@@ -18,7 +18,6 @@ public class Ejercicio10 {
 				minimo = x;
 			if (x > maximo)
 				maximo = x;
-
 			System.out.print("Introduce otro dato: ");
 			x = s.nextInt();
 		}
@@ -28,6 +27,5 @@ public class Ejercicio10 {
 			System.out.println("El máximo vale " + maximo);
 		} else
 			System.out.println("No has llegado a introducir números válidos");
-
 	}
 }

@@ -3,16 +3,15 @@ package ejercicios;
 import java.util.Scanner;
 
 public class Ejercicio01 {
-	
+
 	public static boolean esPar(int n) {
-		/*
 		boolean resultado;
-		if ((n%2==0));
+		if ((n % 2 == 0)) {
 			resultado = true;
-		else 
+		} else {
 			resultado = false;
-		return resultado;*/
-		return n%2==2;
+		}
+		return resultado;
 	}
 
 	public static void main(String[] args) {
